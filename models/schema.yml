@@ -17,7 +17,14 @@ sources:
             error_after: {count: 24, period: hour}
 
 models:
+
   - name: dim_listings_cleansed
+    description: Cleansed table which contains Airbnb listings.
+    data_tests:
+      - minimum_row_count:
+          arguments:
+            min_row_count: 1000
+          severity: error  
     columns:
 
      - name: listing_id
