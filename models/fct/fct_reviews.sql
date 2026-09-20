@@ -1,17 +1,18 @@
 {{
-  config(
-    materialized = 'incremental',
-    on_schema_change='fail'
+    config(
+       materialized = 'incremental',
+       on_schema_change='fail',
+       event_time='review_date'
     )
 }}
-WITH src_reviews AS (
-  SELECT * FROM {{ ref('src_reviews') }}
+
+with src_reviews as(
+    select * from {{ ref('src_reviews') }}
 )
-SELECT
-  {{ dbt_utils.generate_surrogate_key(['listing_id', 'review_date', 'reviewer_name', 'review_text']) }} as review_id,
-  *
-FROM src_reviews
-WHERE review_text is not null
+
+select {{ dbt_utils.generate_surrogate_key(['listing_id', 'review_date', 'reviewer_name', 'review_text']) }} AS review_id,
+* from src_reviews
+where review_text is not null
 
 {% if is_incremental() %}
   {% if var("start_date", False) and var("end_date", False) %}

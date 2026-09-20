@@ -1,4 +1,4 @@
-airbnb:
+dtb_airbnb:
   outputs:
     staging:
       type: snowflake

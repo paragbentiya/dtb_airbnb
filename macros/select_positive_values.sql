@@ -1,5 +1,4 @@
-{% macro select_positive_values(model, column_name) %}
-    SELECT *
-    FROM {{ model }}
-    WHERE {{ column_name }} > 0
+{%  macro select_positive_values(model, column_name) %}
+Select * from {{model}} where {{column_name}} > 0
+
 {% endmacro %}
