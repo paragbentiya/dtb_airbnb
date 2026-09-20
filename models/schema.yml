@@ -37,7 +37,7 @@ models:
        data_tests:
          - positive_values
 
-  - name: dim_listing_w_host
+  - name: dim_listings_w_hoststs
     tests:
       - dbt_expectations.expect_table_row_count_to_equal_other_table:
           arguments:
